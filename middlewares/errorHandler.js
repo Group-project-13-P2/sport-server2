@@ -35,5 +35,5 @@ module.exports = function (err, request, response, next) {
 			message = "Internal Server Error!"
 	}
 
-	response.status(status).json({message});
+	response.status(status).send(message);
 }
