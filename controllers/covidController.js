@@ -14,7 +14,7 @@ class covidController {
             console.log('Hello from covid controller');
             console.log(endDate);
             const { data } = await axios.get(`https://covidtrackerapi.bsg.ox.ac.uk/api/v2/stringency/date-range/${startDate}/${endDate}`);
-            response.status(200).json(data)
+            response.status(200).json(data);
         } catch (error) {
             console.log(error, 'test');
             next(error)
@@ -27,7 +27,7 @@ class covidController {
         try {
             console.log('Hello from covid controller');
             const { data } = await axios.get(`https://covidtrackerapi.bsg.ox.ac.uk/api/v2/stringency/actions/${country}/${currentDay}`);
-            response.status(200).json(data)
+            response.status(200).json(data);
         } catch (error) {
             console.log(error, 'test');
             next(error)

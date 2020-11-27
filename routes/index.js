@@ -6,6 +6,8 @@ const authentication = require("../middlewares/authentication");
 
 route.post("/register", userController.register);
 route.post("/login", userController.login);
+route.post("/glogin", userController.googleLogin);
+
 route.get("/klasemen", klasemenController.getKlasemen);
 route.get("/covidreport", covidController.getCovidData);
 route.get("/covidreportbyday", covidController.getCovidDataByDay);
