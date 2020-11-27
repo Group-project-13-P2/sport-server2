@@ -1,6 +1,7 @@
 const { User } = require("../models");
 const { comparePassword } = require("../helpers/bcrypt");
 const { loginToken } = require("../helpers/jwt");
+const { OAuth2Client } = require('google-auth-library');
 
 class userController{
     static async register(request, response, next) {
@@ -49,6 +50,52 @@ class userController{
             next(error);
         }
     }
+
+    static googleLogin(request, response, next) {
+		let { g_access_token } = request.body
+		const CLIENT_ID = `665846696120-69gojtcu9rg9mi6voathtjc53k90gt4g.apps.googleusercontent.com`
+		const client = new OAuth2Client(CLIENT_ID);
+		let email = null;
+
+        client.verifyIdToken({
+            idToken: g_access_token,
+            audience: process.env.OAuthID
+        })
+        .then(ticket=> {
+            let payload = ticket.getPayload();
+            email = payload.email;
+
+            return User.findOne({
+                where: { email: payload.email }
+            })
+        })
+        .then(user => {
+            if(user) {
+                return user
+            } else {
+                let userData = {
+                    email, password: "12345"
+                }
+
+                return User.create(userData);
+            }
+        })
+        .then(ticket => {
+			let access_token = loginToken({
+				id: ticket.id,
+				email: ticket.email
+			})
+
+			return response.status(200).json({
+				access_token,
+				email
+			})
+		})
+        .catch(error => {
+            console.log(error);
+        })
+        
+	}
 }
 
 module.exports = userController;
