@@ -8,9 +8,16 @@ class Highlight {
         url: "https://www.scorebat.com/video-api/v1/",
         method: "GET"
       })
-      const highlight = response.videos
-      const embedHighlight = response.embed
-      res.status(200).json({highlight,embedHighlight})
+
+      console.log(response.data)
+      const arr = [];
+      response.data.forEach(element => {
+        if (element.competition.name === "ENGLAND: Premier League") {
+          console.log(element)
+          arr.push(element.videos)
+        }
+      })
+      res.status(200).json({ arr })
     }
     catch(err) {
       next(err)

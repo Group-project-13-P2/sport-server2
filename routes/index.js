@@ -7,7 +7,7 @@ const authentication = require("../middlewares/authentication");
 route.post("/register", userController.register);
 route.post("/login", userController.login);
 route.get("/klasemen", klasemenController.getKlasemen);
-route.get("/highlight", highlightController.getHighlight);
+route.get("/highlights", highlightController.getHighlight);
 route.use(authentication);
 
 module.exports = route;
