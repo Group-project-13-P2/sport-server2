@@ -10,14 +10,14 @@ class Highlight {
       })
 
       console.log(response.data)
-      const arr = [];
+      const highlights = [];
       response.data.forEach(element => {
         if (element.competition.name === "ENGLAND: Premier League") {
           console.log(element)
-          arr.push(element.videos)
+          highlights.push(element.videos)
         }
       })
-      res.status(200).json({ arr })
+      res.status(200).json({ highlights })
     }
     catch(err) {
       next(err)
