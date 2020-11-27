@@ -34,6 +34,9 @@ class JadwalPertandinganController {
             })
 
             console.log(last15match.data)
+
+            console.log('===================================')
+            // console.log(data)
             const data = last15match.data
             if(last15match){
                 res.status(200).json({
@@ -49,6 +52,7 @@ class JadwalPertandinganController {
             next(error)
         }
     }
+
 }
 
 
