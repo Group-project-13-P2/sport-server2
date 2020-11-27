@@ -303,7 +303,8 @@ GET
 
   * **Code:** 200 <br />
     **Content:** 
-    ```md
+
+```
   {
     "arr": [
         [
@@ -390,10 +391,14 @@ GET
         ]
     ]
 }
-    ```
+```
+
 * **Error Response:**
 
   * **Code:** 500 <br />
-    **Content:** `{ error : "Internal Server Error" }`
-
+    **Content:** 
+    ```
+    `{ error : "Internal Server Error" }`
+    
+    ```
 
